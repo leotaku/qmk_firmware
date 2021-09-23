@@ -39,6 +39,8 @@ quantum/version.h
 /keyboards/*/*/*/*/*/keymaps/Makefile
 
 # Eclipse/PyCharm/Other IDE Settings
+compile_flags.txt
+compile_commands.json
 *.iml
 .browse.VC.db*
 .cproject

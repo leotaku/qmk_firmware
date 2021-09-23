@@ -445,6 +445,9 @@ check-size: build
 check-md5: build
 objs-size: build
 
+compile-flags:
+	$(TOP_DIR)/util/compile_flags.sh $(addprefix -I,$($(KEYBOARD_OUTPUT)_INC)) $($(KEYMAP_OUTPUT)_DEFS)
+
 include show_options.mk
 include $(TMK_PATH)/rules.mk
 
