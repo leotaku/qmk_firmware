@@ -69,10 +69,11 @@ enum planck_ez_keycodes {
 typedef union {
   uint32_t raw;
   struct {
-    bool         disable_layer_led   :1;
-    bool         rgb_matrix_enable   :1;
-    bool         led_level           :1;
-    uint8_t      led_level_res       :2; // DO NOT REMOVE
+    bool         disable_layer_led        :1;
+    bool         layer_led_was_disabled   :1;
+    bool         rgb_matrix_enable        :1;
+    bool         led_level                :1;
+    uint8_t      led_level_res            :2; // DO NOT REMOVE
   };
 } keyboard_config_t;
 
