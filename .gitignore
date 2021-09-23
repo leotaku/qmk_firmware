@@ -130,3 +130,7 @@ via*.json
 !/keyboards/zsa/**/keymaps/default/**
 !/keyboards/zsa/**/keymaps/oryx
 !/keyboards/zsa/**/keymaps/oryx/**
+
+# Leo Specific ignores
+!/keyboards/zsa/**/keymaps/leo
+!/keyboards/zsa/**/keymaps/leo/**
