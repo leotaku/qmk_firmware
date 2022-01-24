@@ -56,6 +56,8 @@ CMakeLists.txt
 .vscode/launch.json
 .vscode/tasks.json
 .vscode/temp.sql
+compile_commands.json
+compile_flags.txt
 tags
 
 # Ignore image files
