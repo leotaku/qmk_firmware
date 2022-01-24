@@ -514,3 +514,6 @@ define GEN_FILES
 $1: generated-files
 endef
 $(foreach O,$(OBJ),$(eval $(call GEN_FILES,$(patsubst %.a,%.o,$(O)))))
+
+compile-flags:
+	$(TOP_DIR)/util/compile_flags.sh $(addprefix -I,$($(KEYBOARD_OUTPUT)_INC)) $($(KEYMAP_OUTPUT)_DEFS)
