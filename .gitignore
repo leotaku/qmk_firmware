@@ -51,6 +51,8 @@ doxygen/
 .vscode/temp.sql
 .stfolder
 .tags
+compile_commands.json
+compile_flags.txt
 
 # ignore image files
 *.png
