@@ -1,4 +1,4 @@
-/* Copyright 2021 Leo Gaskin <leo.gaskin@le0.gs>
+/* Copyright 2021-2022 Leo Gaskin <leo.gaskin@le0.gs>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
