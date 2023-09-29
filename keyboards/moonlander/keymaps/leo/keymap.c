@@ -69,7 +69,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // clang-format on
 
 // clang-format off
-const uint8_t PROGMEM ledmaps[][DRIVER_LED_TOTAL][3] = {
+const uint8_t PROGMEM ledmaps[][RGB_MATRIX_LED_COUNT][3] = {
     [BASE] = { {  0,255,255}, {  0,255,255}, {  0,255,255}, {  0,255,255}, {  0,255,255},
                {  0,255,255}, {  0,255,255}, {  0,255,255}, {  0,255,255}, {  0,255,255},
                {  0,255,255}, {  0,255,255}, {  0,255,255}, {  0,255,255}, {  0,255,255},
@@ -130,7 +130,7 @@ const uint8_t PROGMEM ledmaps[][DRIVER_LED_TOTAL][3] = {
 // clang-format on
 
 void set_layer_color(int layer) {
-    for (int i = 0; i < DRIVER_LED_TOTAL; i++) {
+    for (int i = 0; i < RGB_MATRIX_LED_COUNT; i++) {
         HSV hsv = {
             .h = pgm_read_byte(&ledmaps[layer][i][0]),
             .s = pgm_read_byte(&ledmaps[layer][i][1]),
@@ -146,9 +146,9 @@ void set_layer_color(int layer) {
     }
 }
 
-void rgb_matrix_indicators_user(void) {
+bool rgb_matrix_indicators_user(void) {
     if (keyboard_config.disable_layer_led) {
-        return;
+        return true;
     }
     switch (biton32(layer_state)) {
         case BASE:
@@ -164,4 +164,6 @@ void rgb_matrix_indicators_user(void) {
             if (rgb_matrix_get_flags() == LED_FLAG_NONE) rgb_matrix_set_color_all(0, 0, 0);
             break;
     }
+
+    return false;
 }
