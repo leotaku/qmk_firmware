@@ -17,6 +17,7 @@
 #pragma once
 
 #define ORYX_CONFIGURATOR
+#define MOONLANDER_USER_LEDS
 
 #define TAPPING_TERM 200
 #define ONESHOT_TAP_TOGGLE 2
