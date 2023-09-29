@@ -31,10 +31,6 @@ enum custom_keycodes {
     TD_CTL  = OSM(MOD_LCTL),
     TD_ALT  = OSM(MOD_LALT),
     TD_GUI  = OSM(MOD_LGUI),
-    TD_ADIA = ALGR(KC_A),
-    TD_ODIA = ALGR(KC_O),
-    TD_UDIA = ALGR(KC_U),
-    TD_SS   = ALGR(KC_S),
 };
 
 // clang-format off
@@ -50,8 +46,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [SYMB] = LAYOUT_moonlander(
         _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   _______,           KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,
-        _______, DE_AT,   DE_CIRC, DE_EURO, DE_ASTR, DE_PLUS, _______,           _______, DE_LABK, TD_UDIA, DE_PIPE, TD_ODIA, DE_RABK, _______,
-        _______, TD_ADIA, TD_SS,   KC_TAB,  DE_HASH, DE_TILD, _______,           _______, DE_SLSH, KC_DOWN, KC_UP,   KC_RGHT, KC_LEFT, _______,
+        _______, DE_AT,   DE_CIRC, DE_EURO, DE_ASTR, DE_PLUS, _______,           _______, DE_LABK, DE_UDIA, DE_PIPE, DE_ODIA, DE_RABK, _______,
+        _______, DE_ADIA, DE_SS,   KC_TAB,  DE_HASH, DE_TILD, _______,           _______, DE_SLSH, KC_DOWN, KC_UP,   KC_RGHT, KC_LEFT, _______,
         _______, DE_EXLM, DE_DQUO, DE_DLR,  DE_PERC, DE_AMPR,                             DE_BSLS, DE_QUOT, DE_GRV,  DE_EQL,  DE_QUES, _______,
         _______, _______, _______, _______, _______,          _______,           _______,          _______, _______, _______, _______, _______,
                                             _______, _______, _______,           TO(BASE), _______, _______
