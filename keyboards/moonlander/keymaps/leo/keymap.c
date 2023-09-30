@@ -25,7 +25,6 @@ enum layers {
 };
 
 enum custom_keycodes {
-    TD_ORYX = WEBUSB_PAIR,
     TD_VIM  = LT(SYMB, KC_ESC),
     TD_SFT  = OSM(MOD_LSFT),
     TD_CTL  = OSM(MOD_LCTL),
@@ -40,7 +39,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    _______,           _______, DE_Z,    KC_U,    KC_I,    KC_O,    KC_P,    DE_UDIA,
         KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    _______,           _______, KC_H,    KC_J,    KC_K,    KC_L,    DE_ODIA, DE_ADIA,
         KC_TAB,  DE_Y,    KC_X,    KC_C,    KC_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, KC_DOT,  DE_MINS, _______,
-        _______, _______, _______, TD_ALT,  TD_GUI,           TO(GAME),          TD_ORYX,          TD_VIM,  KC_ENT,  DE_HASH, DE_PLUS, _______,
+        _______, _______, _______, TD_ALT,  TD_GUI,           TO(GAME),          _______,          TD_VIM,  KC_ENT,  DE_HASH, DE_PLUS, _______,
                                             TD_SFT,  TD_CTL,  _______,           _______, KC_BSPC, KC_SPC
     ),
 
