@@ -35,11 +35,11 @@ enum custom_keycodes {
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_moonlander(
-        KC_ESC,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    _______,           KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    DE_SS,   DE_ACUT,
-        KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    _______,           _______, DE_Z,    KC_U,    KC_I,    KC_O,    KC_P,    DE_UDIA,
-        KC_TAB,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    _______,           _______, KC_H,    KC_J,    KC_K,    KC_L,    DE_ODIA, DE_ADIA,
-        KC_TAB,  DE_Y,    KC_X,    KC_C,    KC_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, KC_DOT,  DE_MINS, _______,
-        _______, _______, _______, MY_ALT,  MY_GUI,           TO(GAME),          _______,          MY_VIM,  KC_ENT,  DE_HASH, DE_PLUS, _______,
+        _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    _______,           KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______, _______,
+        _______, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    _______,           _______, DE_Z,    KC_U,    KC_I,    KC_O,    KC_P,    DE_UDIA,
+        _______, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    _______,           _______, KC_H,    KC_J,    KC_K,    KC_L,    DE_ODIA, DE_ADIA,
+        _______, DE_Y,    KC_X,    KC_C,    KC_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, KC_DOT,  DE_MINS, _______,
+        _______, _______, _______, MY_ALT,  MY_GUI,           TO(GAME),          _______,          MY_VIM,  KC_ENT,  _______, _______, _______,
                                             MY_SFT,  MY_CTL,  _______,           _______, KC_BSPC, KC_SPC
     ),
 
@@ -49,7 +49,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, DE_ADIA, DE_SS,   KC_TAB,  DE_HASH, DE_TILD, _______,           _______, DE_SLSH, KC_DOWN, KC_UP,   KC_RGHT, KC_LEFT, _______,
         _______, DE_EXLM, DE_DQUO, DE_DLR,  DE_PERC, DE_AMPR,                             DE_BSLS, DE_QUOT, DE_GRV,  DE_EQL,  DE_QUES, _______,
         _______, _______, _______, _______, _______,          _______,           _______,          _______, _______, _______, _______, _______,
-                                            _______, _______, _______,           TO(BASE), _______, _______
+                                            _______, _______, _______,           _______, _______, _______
     ),
 
     [GAME] = LAYOUT_moonlander(
