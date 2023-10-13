@@ -124,6 +124,13 @@ const uint8_t PROGMEM ledmaps[][RGB_MATRIX_LED_COUNT][3] = {
 };
 // clang-format on
 
+// clang-format off
+_Static_assert(
+    sizeof(keymaps) / sizeof(*keymaps) == sizeof(ledmaps) / sizeof(*ledmaps),
+    "key and led maps are not of the same length"
+);
+// clang-format on
+
 void set_layer_color(int layer) {
     for (int i = 0; i < RGB_MATRIX_LED_COUNT; i++) {
         HSV hsv = {
@@ -145,20 +152,7 @@ bool rgb_matrix_indicators_user(void) {
     if (keyboard_config.disable_layer_led) {
         return true;
     }
-    switch (biton32(layer_state)) {
-        case BASE:
-            set_layer_color(BASE);
-            break;
-        case SYMB:
-            set_layer_color(SYMB);
-            break;
-        case GAME:
-            set_layer_color(GAME);
-            break;
-        default:
-            if (rgb_matrix_get_flags() == LED_FLAG_NONE) rgb_matrix_set_color_all(0, 0, 0);
-            break;
-    }
+    set_layer_color(biton32(layer_state));
 
     return false;
 }
