@@ -20,12 +20,12 @@
 
 enum layers {
     BASE,
-    SYMB,
-    GAME,
+    SYMBOLS,
+    GAMING,
 };
 
 enum custom_keycodes {
-    MY_VIM  = LT(SYMB, KC_ESC),
+    MY_VIM  = LT(SYMBOLS, KC_ESC),
     MY_SFT  = OSM(MOD_LSFT),
     MY_CTL  = OSM(MOD_LCTL),
     MY_ALT  = OSM(MOD_LALT),
@@ -39,11 +39,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    _______,           _______, DE_Z,    KC_U,    KC_I,    KC_O,    KC_P,    DE_UDIA,
         _______, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    _______,           _______, KC_H,    KC_J,    KC_K,    KC_L,    DE_ODIA, DE_ADIA,
         _______, DE_Y,    KC_X,    KC_C,    KC_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, KC_DOT,  DE_MINS, _______,
-        _______, _______, _______, MY_ALT,  MY_GUI,           TO(GAME),          _______,          MY_VIM,  KC_ENT,  _______, _______, _______,
+        _______, _______, _______, MY_ALT,  MY_GUI,           TO(GAMING),        _______,          MY_VIM,  KC_ENT,  _______, _______, _______,
                                             MY_SFT,  MY_CTL,  _______,           _______, KC_BSPC, KC_SPC
     ),
 
-    [SYMB] = LAYOUT_moonlander(
+    [SYMBOLS] = LAYOUT_moonlander(
         _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   _______,           KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,
         _______, DE_AT,   DE_CIRC, DE_EURO, DE_ASTR, DE_PLUS, _______,           _______, DE_LABK, DE_UDIA, DE_PIPE, DE_ODIA, DE_RABK, _______,
         _______, DE_ADIA, DE_SS,   KC_TAB,  DE_HASH, DE_TILD, _______,           _______, DE_SLSH, KC_DOWN, KC_UP,   KC_RGHT, KC_LEFT, _______,
@@ -52,7 +52,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                             _______, _______, _______,           _______, _______, _______
     ),
 
-    [GAME] = LAYOUT_moonlander(
+    [GAMING] = LAYOUT_moonlander(
         _______, _______, _______, _______, _______, _______, RGB_MODE_FORWARD,  RGB_VAI, _______, _______, _______, _______, _______, _______,
         KC_ESC,  _______, KC_W,    _______, _______, _______, RGB_MODE_REVERSE,  RGB_VAD, _______, _______, _______, _______, _______, _______,
         KC_TAB,  KC_A,    KC_S,    KC_D,    _______, _______, TOGGLE_LAYER_COLOR,RGB_TOG, _______, _______, _______, _______, _______, _______,
@@ -74,7 +74,7 @@ const uint32_t PROGMEM ledmaps[][RGB_MATRIX_LED_COUNT] = {
                                     0xf00, 0xf00, 0xf00,   0xf00, 0xf00, 0xf00
     ),
 
-    [SYMB] = LED_LAYOUT_moonlander(
+    [SYMBOLS] = LED_LAYOUT_moonlander(
         0xf00, 0xf00, 0xf00, 0xf00, 0xf00, 0xf00, 0xf00,   0xf00, 0xf00, 0xf00, 0xf00, 0xf00, 0xf00, 0xf00,
         0xf00, 0xf00, 0xf00, 0xf00, 0xf00, 0xf00, 0xf00,   0xf00, 0xf00, 0xf00, 0xf00, 0xf00, 0xf00, 0xf00,
         0xf00, 0xf00, 0xf00, 0xf00, 0xf00, 0xf00, 0xf00,   0xf00, 0xf00, 0xfc0, 0xfc0, 0xfc0, 0xfc0, 0xf00,
@@ -83,7 +83,7 @@ const uint32_t PROGMEM ledmaps[][RGB_MATRIX_LED_COUNT] = {
                                     0xf00, 0xf00, 0xf00,   0xf00, 0xf00, 0xf00
     ),
 
-    [GAME] = LED_LAYOUT_moonlander(
+    [GAMING] = LED_LAYOUT_moonlander(
         0x0f0, 0x0f0, 0x0f0, 0x0f0, 0x0f0, 0x0f0, 0x0f0,   0x0f0, 0x0f0, 0x0f0, 0x0f0, 0x0f0, 0x0f0, 0x0f0,
         0x0f0, 0x0f0, 0xfff, 0x0f0, 0x0f0, 0x0f0, 0x0f0,   0x0f0, 0x0f0, 0x0f0, 0x0f0, 0x0f0, 0x0f0, 0x0f0,
         0x0f0, 0xfff, 0xfff, 0xfff, 0x0f0, 0x0f0, 0x0f0,   0x0f0, 0x0f0, 0x0f0, 0x0f0, 0x0f0, 0x0f0, 0x0f0,
