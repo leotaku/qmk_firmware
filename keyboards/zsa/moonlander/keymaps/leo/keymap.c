@@ -24,7 +24,7 @@ enum layers {
     GAMING,
 };
 
-enum custom_keycodes {
+enum my_keycodes {
     MY_VIM  = LT(SYMBOLS, KC_ESC),
     MY_SFT  = OSM(MOD_LSFT),
     MY_CTL  = OSM(MOD_LCTL),
