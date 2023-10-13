@@ -21,34 +21,46 @@
 enum layers {
     BASE,
     SYMBOLS,
+    NUMPAD,
     GAMING,
 };
 
+enum td_keycodes { TD_ESC, TD_SFT };
+
 enum my_keycodes {
-    MY_VIM  = LT(SYMBOLS, KC_ESC),
-    MY_SFT  = OSM(MOD_LSFT),
-    MY_CTL  = OSM(MOD_LCTL),
-    MY_ALT  = OSM(MOD_LALT),
-    MY_GUI  = OSM(MOD_LGUI),
+    MY_ESC = TD(TD_ESC),
+    MY_SFT = TD(TD_SFT),
+    MY_GUI = OSM(MOD_LGUI),
+    MY_CTL = OSM(MOD_LCTL),
+    MY_ALT = OSM(MOD_LALT),
 };
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_moonlander(
         _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    _______,           KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______, _______,
-        _______, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    _______,           _______, DE_Z,    KC_U,    KC_I,    KC_O,    KC_P,    DE_UDIA,
-        _______, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    _______,           _______, KC_H,    KC_J,    KC_K,    KC_L,    DE_ODIA, DE_ADIA,
+        _______, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    _______,           _______, DE_Z,    KC_U,    KC_I,    KC_O,    KC_P,    _______,
+        _______, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    _______,           _______, KC_H,    KC_J,    KC_K,    KC_L,    DE_HASH, _______,
         _______, DE_Y,    KC_X,    KC_C,    KC_V,    KC_B,                                KC_N,    KC_M,    KC_COMM, KC_DOT,  DE_MINS, _______,
-        _______, _______, _______, MY_ALT,  MY_GUI,           TO(GAMING),        _______,          MY_VIM,  KC_ENT,  _______, _______, _______,
-                                            MY_SFT,  MY_CTL,  _______,           _______, KC_BSPC, KC_SPC
+        _______, _______, _______, MY_GUI,  MY_SFT,           TO(GAMING),        _______,          MY_ESC,  KC_ENT,  _______, _______, _______,
+                                            MY_CTL,  MY_ALT,  _______,           _______, KC_BSPC, KC_SPC
     ),
 
     [SYMBOLS] = LAYOUT_moonlander(
         _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   _______,           KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,
-        _______, DE_AT,   DE_CIRC, DE_EURO, DE_ASTR, DE_PLUS, _______,           _______, DE_LABK, DE_UDIA, DE_PIPE, DE_ODIA, DE_RABK, _______,
-        _______, DE_ADIA, DE_SS,   KC_TAB,  DE_HASH, DE_TILD, _______,           _______, DE_SLSH, KC_DOWN, KC_UP,   KC_RGHT, KC_LEFT, _______,
-        _______, DE_EXLM, DE_DQUO, DE_DLR,  DE_PERC, DE_AMPR,                             DE_BSLS, DE_QUOT, DE_GRV,  DE_EQL,  DE_QUES, _______,
+        _______, DE_AT,   DE_CIRC, DE_EURO, _______, _______, _______,           _______, _______, DE_UDIA, _______, DE_ODIA, _______, _______,
+        _______, DE_ADIA, DE_SS,   KC_TAB,  _______, DE_TILD, _______,           _______, DE_SLSH, KC_DOWN, KC_UP,   KC_RGHT, KC_LEFT, _______,
+        _______, _______, _______, DE_DLR,  DE_PERC, DE_AMPR,                             _______, DE_LPRN, DE_RPRN, _______, _______, _______,
         _______, _______, _______, _______, _______,          _______,           _______,          _______, _______, _______, _______, _______,
+                                            _______, _______, _______,           _______, _______, _______
+        ),
+
+    [NUMPAD] = LAYOUT_moonlander(
+        _______, _______, _______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, DE_LBRC, DE_RBRC, _______,           _______, _______, KC_7,    KC_8,    KC_9,    _______, _______,
+        _______, DE_EXLM, DE_DQUO, DE_EQL,  DE_QUES, _______, _______,           _______, _______, KC_4,    KC_5,    KC_6,    DE_PLUS, _______,
+        _______, _______, _______, _______, DE_LCBR, DE_RCBR,                             _______, KC_1,    KC_2,    KC_3,    DE_ASTR, _______,
+        _______, _______, _______, _______, _______,          _______,           _______,          KC_0,    _______, _______, _______, _______,
                                             _______, _______, _______,           _______, _______, _______
     ),
 
@@ -70,7 +82,7 @@ const uint32_t PROGMEM ledmaps[][RGB_MATRIX_LED_COUNT] = {
         0xf00, 0xf00, 0xf00, 0xf00, 0xf00, 0xf00, 0xf00,   0xf00, 0xf00, 0xf00, 0xf00, 0xf00, 0xf00, 0xf00,
         0xf00, 0xf00, 0xf00, 0xf00, 0xf00, 0xf00, 0xf00,   0xf00, 0xf00, 0xf00, 0xf00, 0xf00, 0xf00, 0xf00,
         0xf00, 0xf00, 0xf00, 0xf00, 0xf00, 0xf00,                 0xf00, 0xf00, 0xf00, 0xf00, 0xf00, 0xf00,
-        0xf00, 0xf00, 0xf00, 0xf00, 0xf00,        0xf00,   0xf00,        0x00f, 0xf00, 0xf00, 0xf00, 0xf00,
+        0xf00, 0xf00, 0xf00, 0xf00, 0x00f,        0xf00,   0xf00,        0x00f, 0xf00, 0xf00, 0xf00, 0xf00,
                                     0xf00, 0xf00, 0xf00,   0xf00, 0xf00, 0xf00
     ),
 
@@ -79,6 +91,15 @@ const uint32_t PROGMEM ledmaps[][RGB_MATRIX_LED_COUNT] = {
         0xf00, 0xf00, 0xf00, 0xf00, 0xf00, 0xf00, 0xf00,   0xf00, 0xf00, 0xf00, 0xf00, 0xf00, 0xf00, 0xf00,
         0xf00, 0xf00, 0xf00, 0xf00, 0xf00, 0xf00, 0xf00,   0xf00, 0xf00, 0xfc0, 0xfc0, 0xfc0, 0xfc0, 0xf00,
         0xf00, 0xf00, 0xf00, 0xf00, 0xf00, 0xf00,                 0xf00, 0xf00, 0xf00, 0xf00, 0xf00, 0xf00,
+        0xf00, 0xf00, 0xf00, 0xf00, 0xf00,        0xf00,   0xf00,        0x00f, 0xf00, 0xf00, 0xf00, 0xf00,
+                                    0xf00, 0xf00, 0xf00,   0xf00, 0xf00, 0xf00
+    ),
+
+    [NUMPAD] = LED_LAYOUT_moonlander(
+        0xf00, 0xf00, 0xf00, 0xf00, 0xf00, 0xf00, 0xf00,   0xf00, 0xf00, 0xf00, 0xf00, 0xf00, 0xf00, 0xf00,
+        0xf00, 0xf00, 0xf00, 0xf00, 0xf00, 0xf00, 0xf00,   0xf00, 0xf00, 0x00f, 0x00f, 0x00f, 0xf00, 0xf00,
+        0xf00, 0xf00, 0xf00, 0xf00, 0xf00, 0xf00, 0xf00,   0xf00, 0xf00, 0x00f, 0x00f, 0x00f, 0xfc0, 0xf00,
+        0xf00, 0xf00, 0xf00, 0xf00, 0xf00, 0xf00,                 0xf00, 0x00f, 0x00f, 0x00f, 0xf00, 0xf00,
         0xf00, 0xf00, 0xf00, 0xf00, 0xf00,        0xf00,   0xf00,        0x00f, 0xf00, 0xf00, 0xf00, 0xf00,
                                     0xf00, 0xf00, 0xf00,   0xf00, 0xf00, 0xf00
     ),
@@ -123,3 +144,86 @@ bool rgb_matrix_indicators_user(void) {
 
     return false;
 }
+
+enum td_state { TD_HOLD, TD_TAP, TD_DOUBLE_TAP };
+
+static enum td_state td_state;
+
+enum td_state cur_dance(tap_dance_state_t *state) {
+    if (/* state->interrupted || */ !state->pressed) {
+        return state->count == 1 ? TD_TAP : TD_DOUBLE_TAP;
+    } else {
+        return TD_HOLD;
+    }
+}
+
+void esc_finished(tap_dance_state_t *state, void *user_data) {
+    td_state = cur_dance(state);
+    switch (td_state) {
+        case TD_HOLD:
+            layer_on((enum layers)user_data);
+            break;
+        case TD_DOUBLE_TAP:
+            tap_code(KC_ESC);
+        case TD_TAP:
+            clear_oneshot_mods();
+            clear_mods();
+            register_code(KC_ESC);
+            break;
+    }
+}
+
+void esc_reset(tap_dance_state_t *state, void *user_data) {
+    switch (td_state) {
+        case TD_HOLD:
+            layer_off((enum layers)user_data);
+            break;
+        case TD_TAP:
+        case TD_DOUBLE_TAP:
+            unregister_code(KC_ESC);
+            break;
+    }
+}
+
+void sft_finished(tap_dance_state_t *state, void *user_data) {
+    td_state = cur_dance(state);
+    switch (td_state) {
+        case TD_HOLD:
+            layer_on((enum layers)user_data);
+            break;
+        case TD_TAP:
+            if (get_mods() & MOD_BIT_LSHIFT) {
+                del_mods(MOD_BIT_LSHIFT);
+                break;
+            }
+            add_oneshot_mods(MOD_BIT_LSHIFT);
+            break;
+        case TD_DOUBLE_TAP:
+            if (get_mods() & MOD_BIT_LSHIFT) {
+                del_mods(MOD_BIT_LSHIFT);
+                break;
+            }
+            add_mods(MOD_BIT_LSHIFT);
+            break;
+    }
+}
+
+void sft_reset(tap_dance_state_t *state, void *user_data) {
+    switch (td_state) {
+        case TD_HOLD:
+            layer_off((enum layers)user_data);
+            break;
+        default:
+            break;
+    }
+}
+
+#define ACTION_TAP_DANCE_LAYER_FUNCTION(user_fn_on_dance_finished, user_fn_on_dance_reset, user_data_) \
+    { .fn = {NULL, user_fn_on_dance_finished, user_fn_on_dance_reset, NULL}, .user_data = (void *)user_data_, }
+
+// clang-format off
+tap_dance_action_t tap_dance_actions[] = {
+    [TD_ESC] = ACTION_TAP_DANCE_LAYER_FUNCTION(esc_finished, esc_reset, SYMBOLS),
+    [TD_SFT] = ACTION_TAP_DANCE_LAYER_FUNCTION(sft_finished, sft_reset, NUMPAD),
+};
+// clang-format on
