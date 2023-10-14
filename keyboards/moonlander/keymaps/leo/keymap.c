@@ -15,6 +15,7 @@
  */
 
 #include QMK_KEYBOARD_H
+#include "dances.h"
 #include "keymap_german.h"
 #include "version.h"
 
@@ -26,6 +27,11 @@ enum layers {
 };
 
 enum td_keycodes { TD_ESC, TD_SFT };
+
+tap_dance_action_t tap_dance_actions[] = {
+    [TD_ESC] = DANCES_LAYER(esc_finished, esc_reset, SYMBOLS),
+    [TD_SFT] = DANCES_LAYER(sft_finished, sft_reset, NUMPAD),
+};
 
 enum my_keycodes {
     MY_ESC = TD(TD_ESC),
@@ -144,86 +150,3 @@ bool rgb_matrix_indicators_user(void) {
 
     return false;
 }
-
-enum td_state { TD_HOLD, TD_TAP, TD_DOUBLE_TAP };
-
-static enum td_state td_state;
-
-enum td_state cur_dance(tap_dance_state_t *state) {
-    if (/* state->interrupted || */ !state->pressed) {
-        return state->count == 1 ? TD_TAP : TD_DOUBLE_TAP;
-    } else {
-        return TD_HOLD;
-    }
-}
-
-void esc_finished(tap_dance_state_t *state, void *user_data) {
-    td_state = cur_dance(state);
-    switch (td_state) {
-        case TD_HOLD:
-            layer_on((enum layers)user_data);
-            break;
-        case TD_DOUBLE_TAP:
-            tap_code(KC_ESC);
-        case TD_TAP:
-            clear_oneshot_mods();
-            clear_mods();
-            register_code(KC_ESC);
-            break;
-    }
-}
-
-void esc_reset(tap_dance_state_t *state, void *user_data) {
-    switch (td_state) {
-        case TD_HOLD:
-            layer_off((enum layers)user_data);
-            break;
-        case TD_TAP:
-        case TD_DOUBLE_TAP:
-            unregister_code(KC_ESC);
-            break;
-    }
-}
-
-void sft_finished(tap_dance_state_t *state, void *user_data) {
-    td_state = cur_dance(state);
-    switch (td_state) {
-        case TD_HOLD:
-            layer_on((enum layers)user_data);
-            break;
-        case TD_TAP:
-            if (get_mods() & MOD_BIT_LSHIFT) {
-                del_mods(MOD_BIT_LSHIFT);
-                break;
-            }
-            add_oneshot_mods(MOD_BIT_LSHIFT);
-            break;
-        case TD_DOUBLE_TAP:
-            if (get_mods() & MOD_BIT_LSHIFT) {
-                del_mods(MOD_BIT_LSHIFT);
-                break;
-            }
-            add_mods(MOD_BIT_LSHIFT);
-            break;
-    }
-}
-
-void sft_reset(tap_dance_state_t *state, void *user_data) {
-    switch (td_state) {
-        case TD_HOLD:
-            layer_off((enum layers)user_data);
-            break;
-        default:
-            break;
-    }
-}
-
-#define ACTION_TAP_DANCE_LAYER_FUNCTION(user_fn_on_dance_finished, user_fn_on_dance_reset, user_data_) \
-    { .fn = {NULL, user_fn_on_dance_finished, user_fn_on_dance_reset, NULL}, .user_data = (void *)user_data_, }
-
-// clang-format off
-tap_dance_action_t tap_dance_actions[] = {
-    [TD_ESC] = ACTION_TAP_DANCE_LAYER_FUNCTION(esc_finished, esc_reset, SYMBOLS),
-    [TD_SFT] = ACTION_TAP_DANCE_LAYER_FUNCTION(sft_finished, sft_reset, NUMPAD),
-};
-// clang-format on
