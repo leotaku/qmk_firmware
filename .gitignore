@@ -134,3 +134,5 @@ via*.json
 # Leo Specific ignores
 !/keyboards/zsa/**/keymaps/leo
 !/keyboards/zsa/**/keymaps/leo/**
+!/users/leo
+!/users/leo/**
