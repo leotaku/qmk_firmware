@@ -137,8 +137,7 @@ void set_layer_color(int layer) {
             .b = ((hex >> 0) & 0b1111) + (((hex >> 0) & 0b1111) << 4),
         };
 
-        float f = (float)rgb_matrix_config.hsv.v / UINT8_MAX;
-        rgb_matrix_set_color(i, f * rgb.r, f * rgb.g, f * rgb.b);
+        rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
     }
 }
 
