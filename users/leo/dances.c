@@ -21,8 +21,11 @@ void esc_finished(tap_dance_state_t *state, void *user_data) {
         case TD_DOUBLE_TAP:
             tap_code(KC_ESC);
         case TD_TAP:
-            clear_oneshot_mods();
-            clear_mods();
+            if (get_oneshot_mods() || get_mods()) {
+                clear_oneshot_mods();
+                clear_mods();
+                break;
+            }
             register_code(KC_ESC);
             break;
     }
