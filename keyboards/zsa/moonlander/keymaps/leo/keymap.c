@@ -54,8 +54,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [SYMBOLS] = LAYOUT_moonlander(
         _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   _______,           KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,
-        _______, DE_AT,   DE_CIRC, DE_EURO, _______, _______, _______,           _______, _______, DE_UDIA, _______, DE_ODIA, _______, _______,
-        _______, DE_ADIA, DE_SS,   KC_TAB,  _______, DE_TILD, _______,           _______, DE_SLSH, KC_DOWN, KC_UP,   KC_RGHT, KC_LEFT, _______,
+        _______, DE_AT,   DE_CIRC, DE_EURO, DE_LABK, DE_RABK, _______,           _______, _______, DE_UDIA, _______, DE_ODIA, _______, _______,
+        _______, DE_ADIA, DE_SS,   KC_TAB,  DE_PIPE, DE_TILD, _______,           _______, DE_SLSH, KC_DOWN, KC_UP,   KC_RGHT, KC_LEFT, _______,
         _______, _______, _______, DE_DLR,  DE_PERC, DE_AMPR,                             _______, DE_LPRN, DE_RPRN, _______, _______, _______,
         _______, _______, _______, _______, _______,          _______,           _______,          _______, _______, _______, _______, _______,
                                             _______, _______, _______,           _______, _______, _______
@@ -64,7 +64,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [NUMPAD] = LAYOUT_moonlander(
         _______, _______, _______, _______, _______, _______, _______,           _______, _______, _______, _______, _______, _______, _______,
         _______, _______, _______, _______, DE_LBRC, DE_RBRC, _______,           _______, _______, KC_7,    KC_8,    KC_9,    _______, _______,
-        _______, DE_EXLM, DE_DQUO, DE_EQL,  DE_QUES, _______, _______,           _______, _______, KC_4,    KC_5,    KC_6,    DE_PLUS, _______,
+        _______, DE_EXLM, DE_DQUO, DE_EQL,  DE_QUES, DE_GRV,  _______,           _______, _______, KC_4,    KC_5,    KC_6,    DE_PLUS, _______,
         _______, _______, _______, _______, DE_LCBR, DE_RCBR,                             _______, KC_1,    KC_2,    KC_3,    DE_ASTR, _______,
         _______, _______, _______, _______, _______,          _______,           _______,          KC_0,    _______, _______, _______, _______,
                                             _______, _______, _______,           _______, _______, _______
@@ -82,7 +82,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // clang-format on
 
 // clang-format off
-const uint32_t PROGMEM ledmaps[][RGB_MATRIX_LED_COUNT] = {
+const uint16_t PROGMEM ledmaps[][RGB_MATRIX_LED_COUNT] = {
     [BASE] = LED_LAYOUT_moonlander(
         0xf00, 0xf00, 0xf00, 0xf00, 0xf00, 0xf00, 0xf00,   0xf00, 0xf00, 0xf00, 0xf00, 0xf00, 0xf00, 0xf00,
         0xf00, 0xf00, 0xf00, 0xf00, 0xf00, 0xf00, 0xf00,   0xf00, 0xf00, 0xf00, 0xf00, 0xf00, 0xf00, 0xf00,
@@ -130,14 +130,16 @@ _Static_assert(
 
 void set_layer_color(int layer) {
     for (int i = 0; i < RGB_MATRIX_LED_COUNT; i++) {
-        uint32_t hex = pgm_read_dword(&ledmaps[layer][i]);
+        uint32_t hex = pgm_read_word(&ledmaps[layer][i]);
         RGB      rgb = {
             .r = ((hex >> 8) & 0b1111) + (((hex >> 8) & 0b1111) << 4),
             .g = ((hex >> 4) & 0b1111) + (((hex >> 4) & 0b1111) << 4),
             .b = ((hex >> 0) & 0b1111) + (((hex >> 0) & 0b1111) << 4),
         };
 
-        rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
+        if (rgb.r || rgb.g || rgb.b) {
+            rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
+        }
     }
 }
 
