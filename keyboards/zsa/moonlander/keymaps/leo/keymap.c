@@ -130,7 +130,7 @@ _Static_assert(
 
 void set_layer_color(int layer) {
     for (int i = 0; i < RGB_MATRIX_LED_COUNT; i++) {
-        uint32_t hex = pgm_read_word(&ledmaps[layer][i]);
+        uint16_t hex = pgm_read_word(&ledmaps[layer][i]);
         RGB      rgb = {
             .r = ((hex >> 8) & 0b1111) + (((hex >> 8) & 0b1111) << 4),
             .g = ((hex >> 4) & 0b1111) + (((hex >> 4) & 0b1111) << 4),
