@@ -32,6 +32,14 @@ tap_dance_action_t tap_dance_actions[] = {
     [TD_ESC] = DANCES_LAYER(esc_finished, esc_reset, ALTGR),
 };
 
+const uint16_t PROGMEM jk_chord[] = {KC_J, KC_K, COMBO_END};
+const uint16_t PROGMEM df_chord[] = {KC_D, KC_F, COMBO_END};
+
+combo_t key_combos[] = {
+    COMBO(jk_chord, OSL(SYMBOLS)),
+    COMBO(df_chord, OSL(SYMBOLS)),
+};
+
 enum my_keycodes {
     MY_ESC = TD(TD_ESC),
     MY_SFT = OSL(SHIFT),
