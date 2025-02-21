@@ -128,17 +128,20 @@ _Static_assert(
 );
 // clang-format on
 
-void set_layer_color(int layer) {
+void set_layer_color(int selected_layer) {
     for (int i = 0; i < RGB_MATRIX_LED_COUNT; i++) {
-        uint16_t hex = pgm_read_word(&ledmaps[layer][i]);
-        RGB      rgb = {
-            .r = ((hex >> 8) & 0b1111) + (((hex >> 8) & 0b1111) << 4),
-            .g = ((hex >> 4) & 0b1111) + (((hex >> 4) & 0b1111) << 4),
-            .b = ((hex >> 0) & 0b1111) + (((hex >> 0) & 0b1111) << 4),
-        };
+        for (int layer = selected_layer; layer >= 0; layer--) {
+            uint16_t hex = pgm_read_word(&ledmaps[layer][i]);
+            RGB      rgb = {
+                .r = ((hex >> 8) & 0b1111) + (((hex >> 8) & 0b1111) << 4),
+                .g = ((hex >> 4) & 0b1111) + (((hex >> 4) & 0b1111) << 4),
+                .b = ((hex >> 0) & 0b1111) + (((hex >> 0) & 0b1111) << 4),
+            };
 
-        if (rgb.r || rgb.g || rgb.b) {
-            rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
+            if (rgb.r || rgb.g || rgb.b) {
+                rgb_matrix_set_color(i, rgb.r, rgb.g, rgb.b);
+                break;
+            }
         }
     }
 }
