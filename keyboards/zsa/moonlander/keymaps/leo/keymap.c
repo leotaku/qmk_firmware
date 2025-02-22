@@ -17,6 +17,7 @@
 #include QMK_KEYBOARD_H
 #include "dances.h"
 #include "keymap_german.h"
+#include "led_layouts.h"
 #include "version.h"
 
 enum layers {
